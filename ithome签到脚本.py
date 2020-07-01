@@ -16,6 +16,8 @@ import Crypto.Cipher.DES
 #pip install Crypto安装完如果提示，ModuleNotFoundError: No module named 'Crypto'
 #那就去python3的安装目录Lib—-site-package中查看是否有Crypto文件夹，这时你应该看到有crypto文件夹，将其重命名为Crypto即可
 
+#7月1日更新，删除邮箱通知
+
 def auto_fill(x):
     if len(x) > 24:
         raise "密钥长度不能大于等于24位"
