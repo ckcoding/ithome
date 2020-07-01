@@ -11,7 +11,6 @@ import Crypto.Cipher.DES
 #优化者：https://github.com/ckjiexi
 #优化新增，支持多账号签到
 #优化新增：支持辣品签到，最会买签到！
-#优化新增邮件通知
 
 #需要注意的坑：
 #pip install Crypto安装完如果提示，ModuleNotFoundError: No module named 'Crypto'
@@ -31,33 +30,7 @@ def getHash(text):
     a = x.encrypt(auto_fill(str(text))).hex()
     return str(a)
 
-def sendEmail(mail_msg):
-    from email.mime.text import MIMEText
-    # email 用于构建邮件内容
-    from email.header import Header
-    # 用于构建邮件头
-    # 发信方的信息：发信邮箱，QQ 邮箱授权码
-    from_addr = 'kzddck@qq.com'
-    password = 'bnleagufjxxebefa'
-    # 收信方邮箱
-    to_addr = '1209739382@qq.com'
-    # 发信服务器
-    smtp_server = 'smtp.qq.com'
-    # 邮箱正文内容，第一个参数为内容，第二个参数为格式(plain 为纯文本)，第三个参数为编码
-    msg = MIMEText(mail_msg , 'plain', 'utf-8')
-    # 邮件头信息
-    msg['From'] = Header(from_addr)
-    msg['To'] = Header(to_addr)
-    msg['Subject'] = Header('it之家签到状态')
-    # 开启发信服务，这里使用的是加密传输
-    server = smtplib.SMTP_SSL(smtp_server)
-    server.connect(smtp_server, 465)
-    # 登录发信邮箱
-    server.login(from_addr, password)
-    # 发送邮件
-    server.sendmail(from_addr, to_addr, msg.as_string())
-    # 关闭服务器
-    server.quit()
+
 
 def run(username, password):
     session = requests.session()
@@ -96,8 +69,8 @@ def run(username, password):
         print(zhm_qiandao)
 
     except:
-        qiandao = "签到失败"
-        sendEmail(qiandao)
+        
+        print("签到失败")
 
 
 my_list = [
